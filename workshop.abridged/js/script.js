@@ -55,8 +55,8 @@ $(function(){
             { field: "BookBoughtDate", title: "購買日期", width: "15%" },
             { command: { text: "刪除", click: deleteBook }, title: " ", width: "120px" }
         ]
-    });
-
+    })
+ //跑出視窗
     $("#window").kendoWindow({
         width: "500px",
         title: "新增書籤",
@@ -67,8 +67,8 @@ $(function(){
      });
     $("#open").click(function () {
         $("#window").data("kendoWindow").center().open();
-    });
-
+    })
+ //收尋 
     $(".book-grid-search").on("input propertychange",(function(){
         $("#book_grid").data("kendoGrid").dataSource.filter({
         // logic: "or",
@@ -93,11 +93,11 @@ function loadBookData(){
         localStorage.setItem("bookData",JSON.stringify(bookDataFromLocalStorage));
     }
 }
-
+//圖片改變，根據kendoDropDownList
 function onChange(){
     $(".book-image").attr("src",$("#book_category").data("kendoDropDownList").value());
 }
-  
+ //刪除
 function deleteBook(e){
    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
    for (i = 0; i < bookDataFromLocalStorage.length; i++){
@@ -109,7 +109,7 @@ function deleteBook(e){
   localStorage.setItem("bookData",JSON.stringify(bookDataFromLocalStorage));
   $("#book_grid").data("kendoGrid").dataSource.data(bookDataFromLocalStorage);
 }
-
+//新增
 function addBook() {
      const add ={
         "BookId":bookDataFromLocalStorage[bookDataFromLocalStorage.length-1].BookId+1,
