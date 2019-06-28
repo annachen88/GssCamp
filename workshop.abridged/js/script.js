@@ -69,16 +69,16 @@ $(function(){
         $("#window").data("kendoWindow").center().open();
     });
 
-    $(".book-grid-search").keyup(function(){
+    $(".book-grid-search").on("input propertychange",(function(){
         $("#book_grid").data("kendoGrid").dataSource.filter({
-        logic: "or",
+        // logic: "or",
         filters: [
             { field: "BookName", 
               operator: "contains", 
               value:$(".book-grid-search").val()
             }
         ]});
-    });
+    }));
     
     $("#insert").click(function () {
         addBook();
